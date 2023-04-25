@@ -115,6 +115,7 @@ h1 span {
 @media (max-width:500px){
     .box{
         width: 70%;
+        margin-left: -10px;
     }
     .btn hr {
         margin-bottom:0px;
