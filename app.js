@@ -8,8 +8,6 @@ const resultyear=document.querySelector('#result-year');
 const errorday = document.querySelector('#error-day');
 const errormonth = document.querySelector('#error-month');
 const erroryear= document.querySelector('#error-year');
-const brdrclr = document.querySelector('.borderclr');
-
 function error_states_day(){
      if(day.value== ''){
         errorday.textContent= 'error';
@@ -25,7 +23,8 @@ function error_states_day(){
     }
 }   
 function error_states_month(){
-    if(month.value== ''){
+    if(month.value=== ''){
+       month.classList.add('.errorborder');
        errormonth.textContent= 'error';
        return false ;
    }
@@ -64,6 +63,7 @@ function error_states_year(){
    }
 }
 function calculateage(inputday) {
+    if(day.value && month.value && year.value){
     let birthday = new Date(inputday);
     let today = new Date();
     let years = today.getFullYear() - birthday.getFullYear();
@@ -83,14 +83,15 @@ function calculateage(inputday) {
         days=days-31;
     }
     if(years>=0){
-        resultyear.innerHTML=years;
         if (months>=0){
-            resultmonth.innerHTML=months;
             if(days>=0){
+                resultyear.innerHTML=years;
+                resultmonth.innerHTML=months;
                 resultday.innerHTML=days;
             }
         }
     }
+}
 }
 button.addEventListener('click' , error_states_year);
 button.addEventListener('click' , error_states_day);
