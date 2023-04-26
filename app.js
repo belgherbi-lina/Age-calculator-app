@@ -10,10 +10,14 @@ const errormonth = document.querySelector('#error-month');
 const erroryear= document.querySelector('#error-year');
 function error_states_day(){
      if(day.value== ''){
+        document.getElementById("day").classList.add("error");
+        document.getElementById("error-label1").classList.add("label-error");
         errorday.textContent= 'error';
         return false ;
     }
     else if( day.value<1 || day.value > 31 || ( month.value==2 && day.value > 29)){
+        document.getElementById("day").classList.add("error");
+        document.getElementById("error-label1").classList.add("label-error");
         errorday.textContent= "Must be a valid date";
         return false;
     }
@@ -24,11 +28,14 @@ function error_states_day(){
 }   
 function error_states_month(){
     if(month.value=== ''){
-       month.classList.add('.errorborder');
+        document.getElementById("month").classList.add("error");
+        document.getElementById("error-label2").classList.add("label-error");
        errormonth.textContent= 'error';
        return false ;
    }
    else if( month.value > 12){
+       document.getElementById("month").classList.add("error");
+       document.getElementById("error-label2").classList.add("label-error");
        errormonth.textContent= "Must be a valid month";
        return false;
    }
@@ -39,28 +46,32 @@ function error_states_month(){
 }
 function error_states_year(){
     if(year.value== ''){
+       document.getElementById("year").classList.add("error");
+       document.getElementById("error-label3").classList.add("label-error");
        erroryear.textContent= 'error';
        return false ;
-   }else if( year.value > new Date().getFullYear()){
-       erroryear.innerHTML= "Must be in past";
-       return false;
-       
-   }else if(year.value == new Date().getFullYear){
-        if(day.value > new Date().getDate() ){
-            erroryear.textContent= "Must be in past";
-            errormonth.textContent= "Must be in past";
-            errorday.textContent= "Must be in past";
-            return false;
-        }else if(month.value > new Date() .getMonth()) {
-            erroryear.textContent= "Must be in past";
-            errormonth.textContent= "Must be in past";
-            errorday.textContent= "Must be in past";
-            return false;
-        }
-   }else{
-       erroryear.innerHTML='';
-       return true ;
-   }
+   }else if( year.value >= new Date().getFullYear()){
+       if(year.value > new Date().getFullYear()){
+        document.getElementById("year").classList.add("error");
+        document.getElementById("error-label3").classList.add("label-error");
+        erroryear.innerHTML= "Must be in past";
+        return false ;
+       }else {
+        if(day.value >= new Date().getDate() ||month.value >= new Date() .getMonth() ){
+        document.getElementById("error-label3").classList.add("label-error");
+        document.getElementById("year").classList.add("error");
+        erroryear.innerHTML= "Must be in past";
+        document.getElementById("error-label2").classList.add("label-error");
+        document.getElementById("month").classList.add("error");
+        document.getElementById("error-label1").classList.add("label-error");
+        document.getElementById("day").classList.add("error");
+        return false;
+      }
+    }
+    }else{
+        erroryear.innerHTML='';
+        return true ;
+    }
 }
 function calculateage(inputday) {
     if(day.value && month.value && year.value){
