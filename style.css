@@ -80,10 +80,10 @@ input {
     font-weight: 900;
 }
 h1 span {
-    letter-spacing: 5px;
+    letter-spacing: 4px;
     color: var(--purple);
     font-style: italic;
-   font-weight: var(--font-weight-italic-bold);
+    font-weight: var(--font-weight-italic-bold);
 }
 .btn{
     display: flex;
@@ -108,14 +108,17 @@ h1 span {
 .mobile {
      display: none;
 }
-
-
-
+.label-error{
+    color: var(--light-red);
+}
+.error-.error {
+    border: 1px solid var(--light-red);
+    color: var(--light-red);
+  }
 
 @media (max-width:500px){
     .box{
         width: 70%;
-        margin-left: -10px;
     }
     .btn hr {
         margin-bottom:0px;
@@ -139,7 +142,7 @@ h1 span {
         margin-left: 15px;
     }
     .title h1 {
-        font-size: 30px;
+        font-size: 40px;
     }
     #btn-{
         padding: 5px;
